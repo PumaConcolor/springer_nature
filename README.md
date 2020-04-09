@@ -8,9 +8,17 @@ Install the required dependencies:
 
     pip install -r requirements.txt
 
-Start the parallel download:
+Start the parallel download of pdf and epub:
 
     python main.py
+
+To select no epub format:
+
+    python main.py --no-epub
+
+To select only epub format:
+
+    python main.py --epub-only
 
 ## Reference
 https://www.springernature.com/gp/librarians/news-events/all-news-articles/industry-news-initiatives/free-access-to-textbooks-for-institutions-affected-by-coronaviru/17855960
