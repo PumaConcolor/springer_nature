@@ -63,7 +63,15 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--no-epub', action='store_true')
     parser.add_argument('--epub-only', action='store_true')
+    parser.add_argument('--package', help='select english package name', default='all')
     args = vars(parser.parse_args())
+    print(args)
     database = get_springer_database()
-    get_books_from_database(database, args)
+    if args['package'] == 'all':
+        get_books_from_database(database, args)
+    else:
+        database = [book for book in database if book['English Package Name'] == args['package']]
+        print(database)
+        get_books_from_database(database, args)
     print('### Download completed ###')
+
