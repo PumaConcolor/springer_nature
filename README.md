@@ -20,5 +20,9 @@ To select only epub format:
 
     python main.py --epub-only
 
+To select the package name:
+
+    python main.py --package "all"
+
 ## Reference
 https://www.springernature.com/gp/librarians/news-events/all-news-articles/industry-news-initiatives/free-access-to-textbooks-for-institutions-affected-by-coronaviru/17855960

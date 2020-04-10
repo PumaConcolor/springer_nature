@@ -49,6 +49,12 @@ def get_book_from_database(book: Dict, args: Dict):
     print(title, 'completed')
 
 def get_books_from_database(database: List[Dict], args: Dict):
+    if args['package'] != 'all':
+        database = [
+            book
+            for book in database
+            if book['English Package Name'] == args['package']
+        ]
     database = [
         (book, args)
         for book in database
@@ -61,17 +67,10 @@ def get_books_from_database(database: List[Dict], args: Dict):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--no-epub', action='store_true')
-    parser.add_argument('--epub-only', action='store_true')
-    parser.add_argument('--package', help='select english package name', default='all')
+    parser.add_argument('--no-epub', help='Select PDF format only', action='store_true')
+    parser.add_argument('--epub-only', help='Select EPUB format only', action='store_true')
+    parser.add_argument('--package', help='Select English Package Name', default='all')
     args = vars(parser.parse_args())
-    print(args)
     database = get_springer_database()
-    if args['package'] == 'all':
-        get_books_from_database(database, args)
-    else:
-        database = [book for book in database if book['English Package Name'] == args['package']]
-        print(database)
-        get_books_from_database(database, args)
+    get_books_from_database(database, args)
     print('### Download completed ###')
-
